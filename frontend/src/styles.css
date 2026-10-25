@@ -12,9 +12,8 @@
   --dn: #e11d48;
   --grad: linear-gradient(135deg, #0b2a4a 0%, #0f766e 70%, #10b981 130%);
   --r: 18px;
-  --sh:
-    0 1px 2px rgba(11, 42, 74, 0.05), 0 16px 36px -22px rgba(11, 42, 74, 0.4);
-  --font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sh: 0 1px 2px rgba(11, 42, 74, 0.05), 0 16px 36px -22px rgba(11, 42, 74, 0.4);
+  --font: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {

@@ -12,10 +12,13 @@
     @for (g of visibili(); track g.id) {
       <details [open]="isOpen(g.id)">
         <summary (click)="toggle(g.id, $event)">
-          <span>{{ g.icona }}</span>{{ g.titolo }}<em>{{ g.totale }}</em>
+          <span>{{ g.icona }}</span
+          >{{ g.titolo }}<em>{{ g.totale }}</em>
         </summary>
         @for (t of g.tabelle; track t.nome) {
-          <a class="sb-link sm" [routerLink]="['/', t.nome]" routerLinkActive="on">{{ t.titolo }}</a>
+          <a class="sb-link sm" [routerLink]="['/', t.nome]" routerLinkActive="on">{{
+            t.titolo
+          }}</a>
         }
       </details>
     }

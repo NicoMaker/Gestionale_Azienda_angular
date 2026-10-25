@@ -55,15 +55,11 @@ export class ModalForm implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.primo()
-      ?.nativeElement.querySelector<HTMLElement>('input,select')
-      ?.focus();
+    this.primo()?.nativeElement.querySelector<HTMLElement>('input,select')?.focus();
   }
 
   protected scelte(c: Campo): [string | number, string][] {
-    return c.opzioni
-      ? c.opzioni.map((o): [string, string] => [o, o])
-      : (this.opzioni()[c.k] ?? []);
+    return c.opzioni ? c.opzioni.map((o): [string, string] => [o, o]) : (this.opzioni()[c.k] ?? []);
   }
 
   protected invalido(c: Campo): boolean {
@@ -77,8 +73,7 @@ export class ModalForm implements OnInit, AfterViewInit {
       return;
     }
     const d: Valori = { ...this.form.getRawValue() };
-    for (const c of this.campi())
-      if (c.type === 'number') d[c.k] = Number(d[c.k] || 0);
+    for (const c of this.campi()) if (c.type === 'number') d[c.k] = Number(d[c.k] || 0);
     this.salva.emit(d);
   }
 

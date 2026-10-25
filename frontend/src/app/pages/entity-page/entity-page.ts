@@ -72,9 +72,7 @@ export class EntityPage {
   protected async salva(riga: Riga | null, v: Valori): Promise<void> {
     const nome = this.nome();
     try {
-      await firstValueFrom(
-        riga ? this.api.put(`${nome}/${riga.id}`, v) : this.api.post(nome, v),
-      );
+      await firstValueFrom(riga ? this.api.put(`${nome}/${riga.id}`, v) : this.api.post(nome, v));
       this.toast.mostra('Salvato');
       this.modale.set(null);
       await this.carica(nome);

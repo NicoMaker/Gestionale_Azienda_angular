@@ -17,7 +17,9 @@
           <input [formControlName]="c.k" [type]="c.type" [attr.step]="c.step ?? null" />
         }
         @if (invalido(c)) {
-          <small class="err">{{ form.controls[c.k].hasError('email') ? 'Email non valida' : 'Campo obbligatorio' }}</small>
+          <small class="err">{{
+            form.controls[c.k].hasError('email') ? 'Email non valida' : 'Campo obbligatorio'
+          }}</small>
         }
       </label>
     }

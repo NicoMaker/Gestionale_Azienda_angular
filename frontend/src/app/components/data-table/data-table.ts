@@ -18,9 +18,7 @@ export class DataTable {
   protected readonly q = signal('');
   protected readonly filtrate = computed(() => {
     const q = this.q().toLowerCase();
-    return this.righe().filter((r) =>
-      JSON.stringify(Object.values(r)).toLowerCase().includes(q),
-    );
+    return this.righe().filter((r) => JSON.stringify(Object.values(r)).toLowerCase().includes(q));
   });
 
   protected valore(c: Colonna, r: Riga): string | number {
