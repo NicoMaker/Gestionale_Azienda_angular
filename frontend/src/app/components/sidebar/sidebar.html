@@ -1,0 +1,24 @@
+<div class="sb">
+  <div class="sb-logo"><span>Σ</span>Gestionale</div>
+  <a routerLink="/dashboard" routerLinkActive="on" class="sb-link"><span>📊</span>Dashboard</a>
+  <input
+    class="sb-cerca"
+    type="search"
+    placeholder="Cerca tabella…"
+    [value]="q()"
+    (input)="onCerca($event)"
+  />
+  <nav>
+    @for (g of visibili(); track g.id) {
+      <details [open]="isOpen(g.id)">
+        <summary (click)="toggle(g.id, $event)">
+          <span>{{ g.icona }}</span>{{ g.titolo }}<em>{{ g.totale }}</em>
+        </summary>
+        @for (t of g.tabelle; track t.nome) {
+          <a class="sb-link sm" [routerLink]="['/', t.nome]" routerLinkActive="on">{{ t.titolo }}</a>
+        }
+      </details>
+    }
+  </nav>
+  <a href="/api/backup" class="sb-link sb-backup" download><span>💾</span>Scarica backup</a>
+</div>

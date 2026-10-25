@@ -1,0 +1,25 @@
+<section>
+  <h1>Dashboard</h1>
+  <p class="sub">Panoramica della tua attività</p>
+  @if (stats(); as s) {
+    <div class="kpis">
+      <div class="kpi hero"><span>Fatturato</span><b>{{ s.fatturato | currency: 'EUR' }}</b></div>
+      <div class="kpi"><span>Incassato</span><b>{{ s.incassato | currency: 'EUR' }}</b></div>
+      <div class="kpi"><span>Clienti</span><b>{{ s.clienti }}</b></div>
+      <div class="kpi"><span>Prodotti</span><b>{{ s.prodotti }}</b></div>
+      <div class="kpi"><span>Fatture</span><b>{{ s.fatture }}</b></div>
+    </div>
+    <div class="panel">
+      <h2>Fatturato per stato</h2>
+      @for (x of s.perStato; track x.stato) {
+        <div class="bar">
+          <span>{{ x.stato }}</span>
+          <i><em [class]="x.stato" [style.width.%]="((x.tot ?? 0) / max()) * 100"></em></i>
+          <b>{{ x.tot ?? 0 | currency: 'EUR' }}</b>
+        </div>
+      } @empty {
+        <p class="sub">Nessuna fattura registrata.</p>
+      }
+    </div>
+  }
+</section>

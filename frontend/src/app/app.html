@@ -1,0 +1,20 @@
+@switch (schema.stato()) {
+  @case ('ok') {
+    <div class="shell">
+      <app-sidebar />
+      <main><router-outlet /></main>
+    </div>
+  }
+  @case ('errore') {
+    <div class="stato">
+      <h1>Impossibile caricare il gestionale</h1>
+      <p class="sub">{{ schema.errore() }}</p>
+      <p class="sub">Controlla che il backend sia avviato (<code>npm start</code>, porta 3000).</p>
+      <button class="btn primary" (click)="schema.carica()">Riprova</button>
+    </div>
+  }
+  @default {
+    <div class="stato"><p class="sub">Caricamento…</p></div>
+  }
+}
+<app-toast />

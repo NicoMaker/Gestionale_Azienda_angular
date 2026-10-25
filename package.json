@@ -1,0 +1,17 @@
+{
+  "name": "gestionale",
+  "version": "1.0.0",
+  "description": "Gestionale a componenti: front (HTML/CSS/JS) + back (Node.js, Express, SQLite3)",
+  "main": "backend/server.js",
+  "scripts": {
+    "genera": "node tools/genera.js",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "dev_dati": "node tools/genera.js && node backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.14",
+    "sqlite3": "^5.1.7"
+  }
+}

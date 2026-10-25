@@ -1,0 +1,72 @@
+.ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 20, 28, 0.55);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 40;
+  animation: ov-in 0.2s;
+}
+.mf {
+  width: min(460px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 30px 70px -20px #000;
+}
+h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+label {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mu);
+}
+input,
+select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--bd);
+  background: var(--bg);
+  color: var(--tx);
+  font: 1rem var(--font);
+  outline: none;
+  text-transform: none;
+}
+input:focus,
+select:focus {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ac) 20%, transparent);
+}
+.err {
+  display: block;
+  margin-top: 4px;
+  color: var(--dn);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+.mf-az {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+@keyframes ov-in {
+  from {
+    opacity: 0;
+  }
+}

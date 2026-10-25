@@ -1,0 +1,94 @@
+.cerca {
+  width: 100%;
+  max-width: 340px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--bd);
+  background: var(--card);
+  color: var(--tx);
+  font: inherit;
+  margin-bottom: 14px;
+  outline: none;
+}
+.cerca:focus {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ac) 20%, transparent);
+}
+.tw {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  box-shadow: var(--sh);
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+th {
+  text-align: left;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mu);
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--ac) 7%, transparent);
+}
+td {
+  padding: 13px 16px;
+  border-top: 1px solid var(--bd);
+}
+tbody tr:hover td {
+  background: color-mix(in srgb, var(--ac) 5%, transparent);
+}
+.az {
+  text-align: right;
+  white-space: nowrap;
+}
+.az .btn {
+  margin-left: 6px;
+}
+.vuoto {
+  text-align: center;
+  color: var(--mu);
+  padding: 30px;
+}
+.badge {
+  padding: 3px 11px;
+  border-radius: 99px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: color-mix(in srgb, var(--gold) 20%, transparent);
+  color: var(--gold);
+}
+.badge.pagata {
+  background: color-mix(in srgb, var(--up) 15%, transparent);
+  color: var(--up);
+}
+.badge.bozza {
+  background: color-mix(in srgb, var(--mu) 15%, transparent);
+  color: var(--mu);
+}
+@media (max-width: 640px) {
+  thead {
+    display: none;
+  }
+  tr {
+    display: block;
+    padding: 10px 14px;
+    border-top: 1px solid var(--bd);
+  }
+  td {
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    padding: 5px 0;
+  }
+  td[data-l]::before {
+    content: attr(data-l);
+    color: var(--mu);
+    font-weight: 600;
+  }
+}

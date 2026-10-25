@@ -1,0 +1,121 @@
+:host {
+  display: block;
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 22px 14px;
+  overflow-y: auto;
+}
+.sb-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  margin: 0 8px 26px;
+  letter-spacing: -0.02em;
+}
+.sb-logo span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--grad);
+  font:
+    italic 700 1.3rem Georgia,
+    serif;
+}
+nav {
+  display: grid;
+  gap: 4px;
+}
+.sb-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  color: #c5d6dd;
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.sb-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.sb-link.on {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 10px 20px -10px #000;
+}
+.sb-link.sm {
+  padding: 7px 14px 7px 44px;
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+.sb-cerca {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #ffffff22;
+  background: #ffffff12;
+  color: #fff;
+  font: inherit;
+  outline: none;
+}
+details {
+  margin-bottom: 4px;
+}
+summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+  color: #e6f1ee;
+}
+summary:hover {
+  background: #ffffff10;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 0.72rem;
+  opacity: 0.6;
+}
+.sb-backup {
+  margin-top: 14px;
+  border: 1px dashed #ffffff33;
+}
+@media (max-width: 820px) {
+  :host {
+    height: auto;
+    position: sticky;
+    z-index: 5;
+    padding: 10px;
+  }
+  .sb-logo {
+    display: none;
+  }
+  nav {
+    display: block;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  .sb-cerca {
+    margin: 6px 0;
+  }
+}

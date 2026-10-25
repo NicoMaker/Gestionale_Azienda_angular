@@ -1,0 +1,42 @@
+<input class="cerca" type="search" placeholder="Cerca…" [value]="q()" (input)="onCerca($event)" />
+<div class="tw">
+  <table>
+    <thead>
+      <tr>
+        @for (c of colonne(); track c.k) {
+          <th>{{ c.l }}</th>
+        }
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of filtrate(); track r.id) {
+        <tr>
+          @for (c of colonne(); track c.k) {
+            <td [attr.data-l]="c.l">
+              @switch (c.fmt) {
+                @case ('euro') {
+                  {{ numero(c, r) | currency: 'EUR' }}
+                }
+                @case ('badge') {
+                  <span [class]="'badge ' + valore(c, r)">{{ valore(c, r) }}</span>
+                }
+                @default {
+                  {{ valore(c, r) }}
+                }
+              }
+            </td>
+          }
+          <td class="az">
+            <button class="btn sm" (click)="modifica.emit(r)">Modifica</button>
+            <button class="btn sm danger" (click)="elimina.emit(r)">Elimina</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td [attr.colspan]="colonne().length + 1" class="vuoto">Nessun risultato</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

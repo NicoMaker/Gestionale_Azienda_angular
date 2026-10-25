@@ -1,0 +1,29 @@
+<div class="ov" (click)="onOverlay($event)">
+  <form class="mf" #modulo [formGroup]="form" (ngSubmit)="invia()" role="dialog" aria-modal="true">
+    <h2>{{ titolo() }}</h2>
+    @for (c of campi(); track c.k) {
+      <label>
+        {{ c.l }}
+        @if (c.type === 'select') {
+          <select [formControlName]="c.k">
+            @if (!c.opzioni) {
+              <option [ngValue]="''" disabled>Seleziona…</option>
+            }
+            @for (o of scelte(c); track o[0]) {
+              <option [ngValue]="o[0]">{{ o[1] }}</option>
+            }
+          </select>
+        } @else {
+          <input [formControlName]="c.k" [type]="c.type" [attr.step]="c.step ?? null" />
+        }
+        @if (invalido(c)) {
+          <small class="err">{{ form.controls[c.k].hasError('email') ? 'Email non valida' : 'Campo obbligatorio' }}</small>
+        }
+      </label>
+    }
+    <div class="mf-az">
+      <button type="button" class="btn" (click)="annulla.emit()">Annulla</button>
+      <button type="submit" class="btn primary">Salva</button>
+    </div>
+  </form>
+</div>

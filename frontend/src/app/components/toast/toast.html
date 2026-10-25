@@ -1,0 +1,3 @@
+@for (t of toast.toasts(); track t.id) {
+  <div class="toast" [class.err]="t.tipo === 'err'" role="status">{{ t.msg }}</div>
+}

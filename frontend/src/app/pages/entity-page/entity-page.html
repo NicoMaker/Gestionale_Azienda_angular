@@ -1,0 +1,32 @@
+@if (entity(); as E) {
+  <section>
+    <div class="testa">
+      <div>
+        <h1>{{ E.titolo }}</h1>
+        <p class="sub">{{ righe().length }} {{ righe().length === 1 ? 'elemento' : 'elementi' }}</p>
+      </div>
+      <button class="btn primary" (click)="apri(null)">+ Nuovo</button>
+    </div>
+    @if (caricato()) {
+      <app-data-table
+        [colonne]="E.colonne"
+        [righe]="righe()"
+        (modifica)="apri($event)"
+        (elimina)="elimina($event)"
+      />
+    } @else {
+      <p class="sub">Caricamento…</p>
+    }
+  </section>
+
+  @if (modale(); as m) {
+    <app-modal-form
+      [titolo]="(m.riga ? 'Modifica ' : 'Nuovo ') + E.singolare"
+      [campi]="E.campi"
+      [valori]="m.riga"
+      [opzioni]="opzioni()"
+      (salva)="salva(m.riga, $event)"
+      (annulla)="modale.set(null)"
+    />
+  }
+}

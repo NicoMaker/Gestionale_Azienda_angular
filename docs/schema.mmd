@@ -1,0 +1,692 @@
+erDiagram
+  clienti {
+    int id PK
+    text nome
+    text email
+    text telefono
+    text citta
+  }
+  fornitori {
+    int id PK
+    text nome
+    text email
+    text telefono
+    text piva
+  }
+  contatti {
+    int id PK
+    text nome
+    text email
+    text telefono
+    int cliente_id FK
+  }
+  clienti ||--o{ contatti : "cliente_id"
+  agenti {
+    int id PK
+    text nome
+    text email
+    int provvigione
+  }
+  categorie_clienti {
+    int id PK
+    text nome
+    int sconto
+  }
+  zone {
+    int id PK
+    text nome
+    text regione
+  }
+  nazioni {
+    int id PK
+    text nome
+    text codice
+    text prefisso
+  }
+  valute {
+    int id PK
+    text codice
+    text nome
+    text simbolo
+  }
+  banche {
+    int id PK
+    text nome
+    text abi
+    text citta
+  }
+  settori {
+    int id PK
+    text nome
+    text descrizione
+  }
+  fatture {
+    int id PK
+    int cliente_id FK
+    text data
+    real importo
+    text stato
+  }
+  clienti ||--o{ fatture : "cliente_id"
+  preventivi {
+    int id PK
+    text numero
+    int cliente_id FK
+    text data
+    real importo
+    text stato
+  }
+  clienti ||--o{ preventivi : "cliente_id"
+  ordini_clienti {
+    int id PK
+    text numero
+    int cliente_id FK
+    text data
+    real importo
+    text stato
+  }
+  clienti ||--o{ ordini_clienti : "cliente_id"
+  note_credito {
+    int id PK
+    text numero
+    int cliente_id FK
+    text data
+    real importo
+  }
+  clienti ||--o{ note_credito : "cliente_id"
+  spedizioni {
+    int id PK
+    text tracking
+    int cliente_id FK
+    text data
+    text corriere
+    text stato
+  }
+  clienti ||--o{ spedizioni : "cliente_id"
+  resi {
+    int id PK
+    text motivo
+    int cliente_id FK
+    text data
+    real importo
+  }
+  clienti ||--o{ resi : "cliente_id"
+  listini {
+    int id PK
+    text nome
+    text valuta
+    text valido_dal
+    text valido_al
+  }
+  sconti {
+    int id PK
+    text nome
+    int percentuale
+    text valido_dal
+    text valido_al
+  }
+  promozioni {
+    int id PK
+    text nome
+    text descrizione
+    text inizio
+    text fine
+  }
+  contratti {
+    int id PK
+    text titolo
+    int cliente_id FK
+    text inizio
+    text fine
+    real valore
+  }
+  clienti ||--o{ contratti : "cliente_id"
+  ordini_fornitori {
+    int id PK
+    text numero
+    int fornitore_id FK
+    text data
+    real importo
+    text stato
+  }
+  fornitori ||--o{ ordini_fornitori : "fornitore_id"
+  fatture_acquisto {
+    int id PK
+    text numero
+    int fornitore_id FK
+    text data
+    real importo
+    text stato
+  }
+  fornitori ||--o{ fatture_acquisto : "fornitore_id"
+  richieste_offerta {
+    int id PK
+    text oggetto
+    int fornitore_id FK
+    text data
+  }
+  fornitori ||--o{ richieste_offerta : "fornitore_id"
+  ddt_ingresso {
+    int id PK
+    text numero
+    int fornitore_id FK
+    text data
+  }
+  fornitori ||--o{ ddt_ingresso : "fornitore_id"
+  note_debito {
+    int id PK
+    text numero
+    int fornitore_id FK
+    text data
+    real importo
+  }
+  fornitori ||--o{ note_debito : "fornitore_id"
+  listini_acquisto {
+    int id PK
+    text nome
+    int fornitore_id FK
+    text valido_dal
+  }
+  fornitori ||--o{ listini_acquisto : "fornitore_id"
+  valutazioni_fornitori {
+    int id PK
+    int fornitore_id FK
+    int punteggio
+    text note
+  }
+  fornitori ||--o{ valutazioni_fornitori : "fornitore_id"
+  budget_acquisti {
+    int id PK
+    text nome
+    int anno
+    real importo
+  }
+  approvazioni {
+    int id PK
+    text oggetto
+    text richiedente
+    text stato
+  }
+  spese_acquisto {
+    int id PK
+    text descrizione
+    int fornitore_id FK
+    text data
+    real importo
+  }
+  fornitori ||--o{ spese_acquisto : "fornitore_id"
+  prodotti {
+    int id PK
+    text nome
+    real prezzo
+    int giacenza
+    int categoria_id FK
+  }
+  categorie_prodotti ||--o{ prodotti : "categoria_id"
+  categorie_prodotti {
+    int id PK
+    text nome
+    text descrizione
+  }
+  marche {
+    int id PK
+    text nome
+    text paese
+  }
+  magazzini {
+    int id PK
+    text nome
+    text citta
+    int capienza
+  }
+  giacenze {
+    int id PK
+    int prodotto_id FK
+    int magazzino_id FK
+    int quantita
+  }
+  prodotti ||--o{ giacenze : "prodotto_id"
+  magazzini ||--o{ giacenze : "magazzino_id"
+  movimenti_magazzino {
+    int id PK
+    int prodotto_id FK
+    text data
+    int quantita
+    text tipo
+  }
+  prodotti ||--o{ movimenti_magazzino : "prodotto_id"
+  lotti {
+    int id PK
+    text codice
+    int prodotto_id FK
+    text scadenza
+  }
+  prodotti ||--o{ lotti : "prodotto_id"
+  inventari {
+    int id PK
+    text nome
+    int magazzino_id FK
+    text data
+  }
+  magazzini ||--o{ inventari : "magazzino_id"
+  unita_misura {
+    int id PK
+    text nome
+    text sigla
+  }
+  ubicazioni {
+    int id PK
+    text codice
+    int magazzino_id FK
+  }
+  magazzini ||--o{ ubicazioni : "magazzino_id"
+  piano_conti {
+    int id PK
+    text codice
+    text nome
+    text tipo
+  }
+  registrazioni {
+    int id PK
+    text descrizione
+    text data
+    real importo
+    int conto_id FK
+  }
+  piano_conti ||--o{ registrazioni : "conto_id"
+  iva {
+    int id PK
+    text nome
+    int aliquota
+  }
+  cespiti {
+    int id PK
+    text nome
+    text acquisto
+    real valore
+  }
+  ammortamenti {
+    int id PK
+    int cespite_id FK
+    int anno
+    real importo
+  }
+  cespiti ||--o{ ammortamenti : "cespite_id"
+  centri_costo {
+    int id PK
+    text codice
+    text nome
+  }
+  scadenzario {
+    int id PK
+    text descrizione
+    text scadenza
+    real importo
+    text stato
+  }
+  riconciliazioni {
+    int id PK
+    text descrizione
+    text data
+    real importo
+  }
+  bilanci {
+    int id PK
+    text nome
+    int anno
+    real utile
+  }
+  esercizi {
+    int id PK
+    text nome
+    text inizio
+    text fine
+  }
+  conti_bancari {
+    int id PK
+    text nome
+    text iban
+    int banca_id FK
+    real saldo
+  }
+  banche ||--o{ conti_bancari : "banca_id"
+  movimenti_bancari {
+    int id PK
+    text descrizione
+    int conto_id FK
+    text data
+    real importo
+  }
+  conti_bancari ||--o{ movimenti_bancari : "conto_id"
+  pagamenti {
+    int id PK
+    text descrizione
+    text data
+    real importo
+    text metodo
+  }
+  incassi {
+    int id PK
+    text descrizione
+    int cliente_id FK
+    text data
+    real importo
+  }
+  clienti ||--o{ incassi : "cliente_id"
+  prestiti {
+    int id PK
+    text nome
+    real capitale
+    int tasso
+    int durata_mesi
+  }
+  investimenti {
+    int id PK
+    text nome
+    text data
+    real importo
+    int rendimento
+  }
+  titoli {
+    int id PK
+    text nome
+    text isin
+    real prezzo
+  }
+  dividendi {
+    int id PK
+    int titolo_id FK
+    text data
+    real importo
+  }
+  titoli ||--o{ dividendi : "titolo_id"
+  previsioni_cassa {
+    int id PK
+    text mese
+    real entrate
+    real uscite
+  }
+  tassi_cambio {
+    int id PK
+    text valuta
+    text data
+    real tasso
+  }
+  dipendenti {
+    int id PK
+    text nome
+    text email
+    int reparto_id FK
+    int ruolo_id FK
+  }
+  reparti ||--o{ dipendenti : "reparto_id"
+  ruoli ||--o{ dipendenti : "ruolo_id"
+  reparti {
+    int id PK
+    text nome
+    text responsabile
+  }
+  ruoli {
+    int id PK
+    text nome
+    int livello
+  }
+  contratti_lavoro {
+    int id PK
+    int dipendente_id FK
+    text inizio
+    text fine
+    real ral
+  }
+  dipendenti ||--o{ contratti_lavoro : "dipendente_id"
+  presenze {
+    int id PK
+    int dipendente_id FK
+    text data
+    int ore
+  }
+  dipendenti ||--o{ presenze : "dipendente_id"
+  ferie {
+    int id PK
+    int dipendente_id FK
+    text dal
+    text al
+    text stato
+  }
+  dipendenti ||--o{ ferie : "dipendente_id"
+  buste_paga {
+    int id PK
+    int dipendente_id FK
+    text mese
+    real lordo
+    real netto
+  }
+  dipendenti ||--o{ buste_paga : "dipendente_id"
+  formazione {
+    int id PK
+    text corso
+    int dipendente_id FK
+    text data
+    int ore
+  }
+  dipendenti ||--o{ formazione : "dipendente_id"
+  selezioni {
+    int id PK
+    text candidato
+    text email
+    text posizione
+    text stato
+  }
+  valutazioni_personale {
+    int id PK
+    int dipendente_id FK
+    int anno
+    int punteggio
+    text note
+  }
+  dipendenti ||--o{ valutazioni_personale : "dipendente_id"
+  progetti {
+    int id PK
+    text nome
+    int cliente_id FK
+    text inizio
+    text fine
+    real budget
+    text stato
+  }
+  clienti ||--o{ progetti : "cliente_id"
+  attivita {
+    int id PK
+    text titolo
+    int progetto_id FK
+    text scadenza
+    text stato
+  }
+  progetti ||--o{ attivita : "progetto_id"
+  milestone {
+    int id PK
+    text nome
+    int progetto_id FK
+    text data
+  }
+  progetti ||--o{ milestone : "progetto_id"
+  risorse {
+    int id PK
+    text nome
+    text ruolo
+    real costo_orario
+  }
+  timesheet {
+    int id PK
+    int progetto_id FK
+    int risorsa_id FK
+    text data
+    int ore
+  }
+  progetti ||--o{ timesheet : "progetto_id"
+  risorse ||--o{ timesheet : "risorsa_id"
+  spese_progetto {
+    int id PK
+    text descrizione
+    int progetto_id FK
+    real importo
+  }
+  progetti ||--o{ spese_progetto : "progetto_id"
+  rischi {
+    int id PK
+    text descrizione
+    int progetto_id FK
+    text gravita
+  }
+  progetti ||--o{ rischi : "progetto_id"
+  documenti_progetto {
+    int id PK
+    text titolo
+    int progetto_id FK
+    text data
+  }
+  progetti ||--o{ documenti_progetto : "progetto_id"
+  versioni {
+    int id PK
+    text nome
+    int progetto_id FK
+    text data
+  }
+  progetti ||--o{ versioni : "progetto_id"
+  rilasci {
+    int id PK
+    text nome
+    int versione_id FK
+    text data
+    text note
+  }
+  versioni ||--o{ rilasci : "versione_id"
+  ticket {
+    int id PK
+    text oggetto
+    int cliente_id FK
+    text priorita
+    text stato
+  }
+  clienti ||--o{ ticket : "cliente_id"
+  interventi {
+    int id PK
+    text descrizione
+    int ticket_id FK
+    int tecnico_id FK
+    text data
+    int ore
+  }
+  ticket ||--o{ interventi : "ticket_id"
+  tecnici ||--o{ interventi : "tecnico_id"
+  garanzie {
+    int id PK
+    int prodotto_id FK
+    int cliente_id FK
+    text scadenza
+  }
+  prodotti ||--o{ garanzie : "prodotto_id"
+  clienti ||--o{ garanzie : "cliente_id"
+  richieste {
+    int id PK
+    text oggetto
+    int cliente_id FK
+    text data
+  }
+  clienti ||--o{ richieste : "cliente_id"
+  faq {
+    int id PK
+    text domanda
+    text risposta
+  }
+  canali {
+    int id PK
+    text nome
+    text tipo
+  }
+  sla {
+    int id PK
+    text nome
+    int ore_risposta
+    int ore_risoluzione
+  }
+  feedback {
+    int id PK
+    int cliente_id FK
+    int voto
+    text commento
+  }
+  clienti ||--o{ feedback : "cliente_id"
+  tecnici {
+    int id PK
+    text nome
+    text email
+    text specialita
+  }
+  ricambi {
+    int id PK
+    text nome
+    text codice
+    real prezzo
+    int giacenza
+  }
+  utenti {
+    int id PK
+    text nome
+    text email
+    text ruolo
+    text attivo
+  }
+  permessi {
+    int id PK
+    text nome
+    text descrizione
+  }
+  log_accessi {
+    int id PK
+    int utente_id FK
+    text data
+    text ip
+  }
+  utenti ||--o{ log_accessi : "utente_id"
+  notifiche {
+    int id PK
+    text titolo
+    int utente_id FK
+    text letta
+  }
+  utenti ||--o{ notifiche : "utente_id"
+  impostazioni {
+    int id PK
+    text chiave
+    text valore
+  }
+  backup_log {
+    int id PK
+    text file
+    text data
+    int dimensione
+  }
+  modelli_email {
+    int id PK
+    text nome
+    text oggetto
+    text testo
+  }
+  allegati {
+    int id PK
+    text nome
+    text tipo
+    int dimensione
+  }
+  tag {
+    int id PK
+    text nome
+    text colore
+  }
+  task_pianificati {
+    int id PK
+    text nome
+    text cron
+    text attivo
+  }
